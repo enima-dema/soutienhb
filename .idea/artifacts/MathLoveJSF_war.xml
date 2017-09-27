@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="MathLoveJSF:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="MathLove.war">
+      <element id="artifact" artifact-name="MathLoveJSF:war exploded" />
+    </root>
+  </artifact>
+</component>

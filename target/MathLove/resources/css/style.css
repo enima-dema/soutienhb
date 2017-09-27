@@ -1,0 +1,19 @@
+.center {
+    display: block;
+    alignment: center;
+    margin: auto;
+    text-align: center;
+}
+
+.right {
+    display: block;
+    alignment: right;
+    margin: auto;
+    text-align: end
+}
+
+.default-space {
+    margin: 15px;
+}
+
+
