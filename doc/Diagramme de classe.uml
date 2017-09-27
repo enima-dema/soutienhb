@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="0.0" y="0.0">love.math.business.User</node>
+    <node x="84.0" y="255.0">love.math.business.Answer</node>
+    <node x="323.0" y="257.0">love.math.business.Question</node>
+    <node x="256.0" y="66.0">love.math.business.Choice</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="love.math.business.Answer" target="love.math.business.Choice">
+      <point x="34.0" y="-47.5" />
+      <point x="186.0" y="230.0" />
+      <point x="285.0" y="230.0" />
+      <point x="-29.0" y="36.5" />
+    </edge>
+    <edge source="love.math.business.Question" target="love.math.business.Choice">
+      <point x="0.0" y="-47.5" />
+      <point x="29.0" y="36.5" />
+    </edge>
+    <edge source="love.math.business.Answer" target="love.math.business.User">
+      <point x="-34.0" y="-47.5" />
+      <point x="0.0" y="102.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="572.0" y="272.5" />
+  <SelectedNodes>
+    <node>love.math.business.Question</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

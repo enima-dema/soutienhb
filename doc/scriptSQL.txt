@@ -1,0 +1,147 @@
+#------------------------------------------------------------
+#        Script MySQL.
+#------------------------------------------------------------
+
+
+#------------------------------------------------------------
+# Table: User
+#------------------------------------------------------------
+
+CREATE TABLE User(
+        id          int (11) primary key Auto_increment  NOT NULL ,
+        name        Varchar (25) NOT NULL ,
+        lastname    Varchar (25) NOT NULL,
+        login       UNIQUE Varchar (25) NOT NULL ,
+        password    Varchar (25) NOT NULL ,
+        sexe        Varchar (25) NOT NULL ,
+        description Text ,
+        birthday    Date NOT NULL)
+);
+
+
+#------------------------------------------------------------
+# Table: Choice
+#------------------------------------------------------------
+
+CREATE TABLE Choice(
+        id          int (11) Auto_increment  NOT NULL ,
+        text        Varchar (25) ,
+        id_Question Int ,
+        PRIMARY KEY (id )
+);
+
+
+#------------------------------------------------------------
+# Table: Question
+#------------------------------------------------------------
+
+CREATE TABLE Question(
+        id   int (11) Auto_increment  NOT NULL ,
+        text Varchar (25) ,
+        PRIMARY KEY (id )
+);
+
+
+#------------------------------------------------------------
+# Table: Answer
+#------------------------------------------------------------
+
+CREATE TABLE Answer(
+        id        int (11) Auto_increment  NOT NULL ,
+        id_User   Int ,
+        id_Choice Int ,
+        PRIMARY KEY (id )
+);
+
+ALTER TABLE Choice ADD CONSTRAINT FK_Choice_id_Question FOREIGN KEY (id_Question) REFERENCES Question(id);
+ALTER TABLE Answer ADD CONSTRAINT FK_Answer_id_User FOREIGN KEY (id_User) REFERENCES User(id);
+ALTER TABLE Answer ADD CONSTRAINT FK_Answer_id_Choice FOREIGN KEY (id_Choice) REFERENCES Choice(id);
+
+#------------------------------------------------------------
+# Data: Users
+#------------------------------------------------------------
+INSERT INTO USER(name, lastname, login, password, sex, description, birthday) VALUES 
+("Amine", "Meda", "amed", "test123", "M", "Je suis un beau gosse t'as vu", "1989-06-13"),
+("Yannick", "Buisson", "ybui", "123test", "M", "Je suis un beau gosse t'as vu", "1989-06-14"),
+("Pierre", "Etleloup", "petl", "test123", "M", "Je suis un beau gosse t'as vu", "1989-06-15"),
+("Sonia", "Delacroix", "sdel", "123test", "F", "Je suis une belle gosse t'as vu", "1989-06-16"),
+("Fatima", "Jensaispas", "fjen", "test123", "F", "Je suis une belle gosse t'as vu", "1989-06-17"),
+("Vincent", "Time", "vtim", "test123", "M", "Je suis un beau gosse t'as vu", "1989-06-18"),
+("Yves", "Végé", "yveg", "123test", "F", "Je suis une belle gosse t'as vu", "1989-06-19"),
+("Clara", "Desvilles", "cdes", "test123", "F", "Je suis une belle gosse t'as vu", "1989-06-20");
+
+#------------------------------------------------------------
+# Data: Questions
+#------------------------------------------------------------
+INSERT INTO question(text) VALUES 
+("Quel est ton superhéros préféré ?"),
+("Si tu étais un arbre, lequel serait tu ?"),
+("Ta position de yoga préférée ?"),
+("Pourrais-tu vivre avec un homme atteint d'un handicap ?"),
+("As-tu ou veux-tu des enfants ?"),
+("Quel est à ton avis le pire drame de l'histoire ?"),
+("Quel est pour toi le plus important dans la vie ?"),
+("Quel est le sentiment qui t'habite le plus ?"),
+("Le vendredi soir, tu es plus ..."),
+("Quel est ton objectif sur ce site ?");
+
+#------------------------------------------------------------
+# Data: Choices
+#------------------------------------------------------------
+INSERT INTO choice(text, id_Question) VALUES 
+("Batman", 1),
+("Superman", 1),
+("Captain America", 1),
+("Chêne", 2),
+("Un cerisier", 2),
+("Un roseau", 2),
+("Le chien tête en bas", 3),
+("Le bambou fendu", 3),
+("Le cobra", 3),
+("Oui", 4),
+("Oui, s'il n'est pas trop lourd", 4),
+("Non", 4),
+("Oui", 5),
+("Non", 5),
+("La faim dans le monde", 6),
+("La guerre", 6),
+("Justin Bieber", 6),
+("De s'amuser", 7),
+("D'accomplir", 7),
+("De surpasser", 7),
+("La peur", 8),
+("La colère", 8),
+("La joie", 8),
+("Le dégout", 8),
+("La honte", 8),
+("Lire un livre tranquille", 9),
+("Boire un verre avec les copains", 9),
+("En boite de nuit", 9),
+("Passer une bonne soirée", 10),
+("Passer une bonne année", 10),
+("Bien faire ma vie", 10);
+
+#------------------------------------------------------------
+# Data: Answers
+#------------------------------------------------------------
+INSERT INTO answer(id_Choice, id_User) VALUES 
+(1,2),
+(4,2),
+(7,2),
+(2,4),
+(5,4),
+(8,4),
+(1,5),
+(5,5),
+(8,5),
+(12,5);
+
+#------------------------------------------------------------
+# Select: Choices of a question
+#------------------------------------------------------------
+SELECT * FROM question q, choice c WHERE c.id_Question = q.id and q.id = 1;
+
+#------------------------------------------------------------
+# Select: Choices of an user
+#------------------------------------------------------------
+SELECT c.text FROM user u, choice c, answer a WHERE a.id_choice = c.id and u.id = a.id_user and u.id = 2;
