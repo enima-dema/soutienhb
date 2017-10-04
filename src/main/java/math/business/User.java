@@ -1,11 +1,16 @@
 package math.business;
 
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Human Booster on 08/09/2017.
  */
+@Entity
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String lastname;
@@ -16,6 +21,8 @@ public class User {
     private Date birthday;
     private String description;
     private String compatibility;
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<Answer> answers;
 
     public int getId() {
         return id;
@@ -87,6 +94,14 @@ public class User {
 
     public void setCompatibility(String compatibility) {
         this.compatibility = compatibility;
+    }
+
+    public List<Answer> getAnswers() {
+        return answers;
+    }
+
+    public void setAnswers(List<Answer> answers) {
+        this.answers = answers;
     }
 
     @Override

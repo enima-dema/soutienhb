@@ -1,33 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app>
-    <display-name>
-        Math Love
-    </display-name>
-    <context-param>
-        <param-name>javax.faces.MATH_LOVE</param-name>
-        <param-value>Development</param-value>
-        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
-        <param-value>client</param-value>
-        <param-name>com.sun.faces.enableRestoreView11Compatibility</param-name>
-        <param-value>true</param-value>
-    </context-param>
-
-    <servlet>
-        <servlet-name>Faces Servlet</servlet-name>
-        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>*.xhtml</url-pattern>
-    </servlet-mapping>
-
-    <welcome-file-list>
-        <welcome-file>login.xhtml</welcome-file>
-    </welcome-file-list>
-
-    <session-config>
-        <session-timeout>35</session-timeout>
-    </session-config>
-
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee
+         http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="3.1">
+  <display-name>MathLove</display-name>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>/WEB-INF/spring-servlet.xml</param-value>
+  </context-param>
+  <welcome-file-list>
+    <welcome-file>/login</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>spring</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>spring</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <filter-name>encoding-filter</filter-name>
+    <filter-class>
+            org.springframework.web.filter.CharacterEncodingFilter
+        </filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+      <param-name>forceEncoding</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>encoding-filter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 </web-app>

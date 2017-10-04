@@ -1,13 +1,18 @@
 package math.business;
 
+import javax.persistence.*;
 import java.util.List;
 
 /**
  * Created by Human Booster on 08/09/2017.
  */
+@Entity
 public class Question {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String text;
+    @OneToMany(mappedBy = "question")
     private List<Choice> choices;
 
     public int getId() {
